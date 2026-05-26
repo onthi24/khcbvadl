@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title> Khoa học cơ bản và dữ liệu </title>
+
+<script>
+// Đường dẫn xuất bản dạng TSV từ Google Sheets của bạn
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGSAfaa7s68I0cwNes4pEDCOHUFynPUujt-dUHUEG3HtrdfEPpNDX2Ejtv4NZZ5FcKTtOdAaWLGiCm/pub?gid=0&single=true&output=tsv";
+
+// Hàm tự động chuyển đổi link Google Drive về định dạng chuẩn sạch
+function normalizeGoogleDriveLink(rawUrl) {
+    if (!rawUrl || rawUrl.trim() === "" || rawUrl.trim() === "#") return "#";
+    let folderIdMatch = rawUrl.match(/folders\/([a-zA-Z0-9-_]{33,})/);
+    if (folderIdMatch && folderIdMatch[1]) {
+        return "https://drive.google.com/drive/folders/" + folderIdMatch[1] + "?usp=drive_link";
+    }
+    return rawUrl;
+}
+
+window.onload = function() {
+    fetch(CSV_URL)
+        .then(response => response.text())
+        .then(text => {
+            let lines = text.split(/\r?\n/);
+            
+            // Bước 1: Tạo trước các ô Tiêu đề mục lớn (Ví dụ: I_1, I_2...)
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                let columns = lines[i].split('\t');
+                if (columns.length >= 2) {
+                    let id = columns[0].trim().toUpperCase().replace(/\s+/g, '');
+                    let textDisplay = columns[1].trim().replace(/^"|"$/g, '');
+                    
+                    let idParts = id.split('_');
+                    if (idParts.length === 2) {
+                        let columnGroup = idParts[0]; 
+                        let colElement = document.getElementById('col-' + columnGroup);
+                        
+                        if (colElement) {
+                            let blockDiv = document.createElement('div');
+                            blockDiv.className = 'menu-block';
+                            
+                            let cardDiv = document.createElement('div');
+                            cardDiv.className = 'card';
+                            cardDiv.setAttribute('onclick', `toggleMenu('drop-${id}')`);
+                            cardDiv.innerHTML = `<h2>${textDisplay}</h2>`;
+                            
+                            let dropdownDiv = document.createElement('div');
+                            dropdownDiv.className = 'dropdown';
+                            dropdownDiv.id = 'drop-' + id;
+                            
+                            blockDiv.appendChild(cardDiv);
+                            blockDiv.appendChild(dropdownDiv);
+                            colElement.appendChild(blockDiv);
+                        }
+                    }
+                }
+            }
+
+            // Bước 2: Nhét các đường Link con vào đúng ô tiêu đề của nó
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                let columns = lines[i].split('\t');
+                if (columns.length >= 3) {
+                    let id = columns[0].trim().toUpperCase().replace(/\s+/g, '');
+                    let textDisplay = columns[1].trim().replace(/^"|"$/g, '');
+                    let url = columns[2].trim().replace(/^"|"$/g, '');
+                    
+                    let idParts = id.split('_');
+                    if (idParts.length >= 3) {
+                        let parentId = 'drop-' + idParts[0] + '_' + idParts[1]; 
+                        let targetDropdown = document.getElementById(parentId);
+                        
+                        if (targetDropdown) {
+                            let aTag = document.createElement('a');
+                            aTag.id = id;
+                            aTag.href = normalizeGoogleDriveLink(url);
+                            aTag.target = "_blank";
+                            aTag.textContent = textDisplay;
+                            targetDropdown.appendChild(aTag);
+                        }
+                    }
+                }
+            }
+
+            // Bước 3: Điền chữ thông báo nếu mục đó trống không có link con nào
+            document.querySelectorAll('.dropdown').forEach(div => {
+                if(div.innerHTML.trim() === '') {
+                    div.innerHTML = '<span style="color:#95a5a6; font-size:13px; display:block; padding:3px 10px; font-style: italic;">Chưa có dữ liệu con</span>';
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Lỗi khi kết nối hoặc tải dữ liệu từ Google Sheet:", error);
+        });
+}
+
+function toggleMenu(id) {
+    let menu = document.getElementById(id);
+    if (!menu) return;
+    
+    let isCurrentlyOpen = (menu.style.display === "block");
+    
+    document.querySelectorAll(".dropdown").forEach(m => {
+        m.style.display = "none";
+    });
+    
+    menu.style.display = isCurrentlyOpen ? "none" : "block";
+}
+</script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+    margin: 0;
+}
+
+/* KHU VỰC TIÊU ĐỀ CHỨA LOGO */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 15px;
+}
+
+.header-container img {
+    height: 55px; /* Chiều cao logo hiển thị cân đối */
+    width: auto;
+    object-fit: contain;
+}
+
+.header-container h1 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+/* 3 CỘT GIAO DIỆN */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px 20px 20px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-block {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CARD TIÊU ĐỀ TRẮNG (CỐ ĐỊNH THU HẸP & IN ĐẬM) */
+.card {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 2;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    margin: 0;
+    color: #34495e;
+    font-size: 15px;
+    font-weight: bold; /* Tự động in đậm chữ cho các mục trắng */
+}
+
+/* MÀU ĐẶC TRƯNG 3 CỘT LỚN BAN ĐẦU */
+.title-1 { background: #1abc9c; color: white; }
+.title-2 { background: #3498db; color: white; }
+.title-3 { background: #e67e22; color: white; }
+
+.title-1, .title-2, .title-3 {
+    padding: 15px 20px;
+}
+
+.title-1 h2, .title-2 h2, .title-3 h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/* DANH SÁCH MENU THẢ XUỐNG */
+.dropdown {
+    margin-top: -4px;
+    padding: 10px 15px 6px 15px;
+    background: #ffffff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    display: none;
+    border-top: 1px dashed #e2e8f0;
+    z-index: 1;
+}
+
+.dropdown a {
+    display: block;
+    text-decoration: none;
+    color: #4a5568;
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f7fafc;
+    transition: 0.2s;
+}
+
+.dropdown a:last-child {
+    border-bottom: none;
+}
+
+.dropdown a:hover {
+    color: #3498db;
+    padding-left: 4px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header-container">
+    <img src="https://lh3.googleusercontent.com/d/1_2ZsxIlZsK7sxQmUwbWXwYkXRH2G-u7Q" alt="Logo Khoa">
+    <h1> </h1>
+</div>
+
+<div class="container">
+
+    <div class="column" id="col-I">
+        <div class="card title-1">
+            <h2> I. Quản lí hoạt động khoa </h2>
+        </div>
+    </div>
+
+    <div class="column" id="col-II">
+        <div class="card title-2">
+            <h2> II. Chương trình đào tạo </h2>
+        </div>
+    </div>
+
+    <div class="column" id="col-III">
+        <div class="card title-3">
+            <h2> III. Hoạt động khác </h2>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
