@@ -97,12 +97,15 @@ window.onload = function() {
         });
 }
 
+// ĐÃ SỬA: Hàm toggleMenu lấy thuộc tính display thực tế từ CSS để không bị lỗi đóng/mở
 function toggleMenu(id) {
     let menu = document.getElementById(id);
     if (!menu) return;
     
-    let isCurrentlyOpen = (menu.style.display === "block");
+    let currentDisplay = window.getComputedStyle(menu).display;
+    let isCurrentlyOpen = (currentDisplay === "block");
     
+    // Ẩn tất cả các dropdown khác khi mở cái mới
     document.querySelectorAll(".dropdown").forEach(m => {
         m.style.display = "none";
     });
@@ -128,7 +131,7 @@ body {
 }
 
 .header-container img {
-    height: 55px; /* Chiều cao logo hiển thị cân đối */
+    height: 55px; 
     width: auto;
     object-fit: contain;
 }
@@ -158,7 +161,7 @@ body {
     flex-direction: column;
 }
 
-/* CARD TIÊU ĐỀ TRẮNG (CỐ ĐỊNH THU HẸP & IN ĐẬM) */
+/* CARD TIÊU ĐỀ TRẮNG */
 .card {
     background: white;
     padding: 10px 15px;
@@ -176,21 +179,26 @@ body {
 
 .card h2 {
     margin: 0;
+    padding: 0;
     color: #34495e;
     font-size: 15px;
-    font-weight: bold; /* Tự động in đậm chữ cho các mục trắng */
+    font-weight: bold; 
 }
 
-/* MÀU ĐẶC TRƯNG 3 CỘT LỚN BAN ĐẦU */
+/* MÀU ĐẶC TRƯNG 3 CỘT LỚN BAN ĐẦU (ĐÃ TÁCH BIỆT KHỎI CLASS CARD) */
+.title-block {
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
 .title-1 { background: #1abc9c; color: white; }
 .title-2 { background: #3498db; color: white; }
 .title-3 { background: #e67e22; color: white; }
 
-.title-1, .title-2, .title-3 {
-    padding: 15px 20px;
-}
-
-.title-1 h2, .title-2 h2, .title-3 h2 {
+.title-block h2 {
+    margin: 0;
+    padding: 0;
     color: white;
     font-weight: bold;
     font-size: 17px;
@@ -233,25 +241,25 @@ body {
 
 <div class="header-container">
     <img src="https://lh3.googleusercontent.com/d/1_2ZsxIlZsK7sxQmUwbWXwYkXRH2G-u7Q" alt="Logo Khoa">
-    <h1> </h1>
+    <h1>Khoa học cơ bản và dữ liệu</h1>
 </div>
 
 <div class="container">
 
     <div class="column" id="col-I">
-        <div class="card title-1">
+        <div class="title-block title-1">
             <h2> I. Quản lí hoạt động khoa </h2>
         </div>
     </div>
 
     <div class="column" id="col-II">
-        <div class="card title-2">
+        <div class="title-block title-2">
             <h2> II. Chương trình đào tạo </h2>
         </div>
     </div>
 
     <div class="column" id="col-III">
-        <div class="card title-3">
+        <div class="title-block title-3">
             <h2> III. Hoạt động khác </h2>
         </div>
     </div>
