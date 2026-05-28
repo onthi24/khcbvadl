@@ -5,21 +5,21 @@
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giao diện bài giảng NAMINS</title>
+    <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
-        const SHEET_ID = '1JtNChbXP89aiYt2y-1wKZba4mh9Xw1YDepaNcdnJ6vE'; // ID Google Sheet môn học của bạn
+        const SHEET_ID = '1z5BUz1SQLn1K-PMmq5yxeuThbto3hboRByu4nc-8jLo'; // ID Google Sheet môn học của bạn
         const SHEET_TITLE = 'Trang tính1'; // Tên Tab của Google Sheet
         const SHEET_RANGE = 'B1:I200'; // Quét chuẩn từ cột B đến cột I để lấy dữ liệu
         const ADMIN_PASSWORD = 'admin123'; // Mật khẩu kích hoạt quyền Admin trên giao diện web
 
         // Cấu hình tài khoản GitHub cố định
         const GH_OWNER = 'onthi24';      // Tên tài khoản GitHub của bạn
-        const GH_REPO = 'namins';        // Tên kho chứa (Repository) trên GitHub
+        const GH_REPO = 'quanlyonthi24';   // Tên kho chứa (Repository) mới trên GitHub
     </script>
     <style>
         /* ==========================================
-           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN NAMINS
+           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN ONTHI24
            ========================================== */
         * {
             box-sizing: border-box;
@@ -415,7 +415,7 @@
             </div>
         </div>
 
-        <div class="current-lesson-bottom-display" id="subject-lesson-append">NAMINS EDUCATION</div>
+        <div class="current-lesson-bottom-display" id="subject-lesson-append">ONTHI24 EDUCATION</div>
 
         <div id="admin-panel">
             <div class="admin-form-group">
@@ -431,16 +431,16 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank" style="text-decoration: none;">
                 <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
             </a>
-            <a href="https://sites.google.com/view/namins2" target="_blank" class="link-detail">GIỚI THIỆU VỀ NAMINS.COM</a>
+            <a href="https://onthi24.github.io/quanlyonthi24/" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24</a>
         </div>
-        <div class="copyright">© 2026 NAMINS</div>
+        <div class="copyright">© 2026 ONTHI24</div>
     </div>
 
     <script>
         // ==========================================================
         // KHU VỰC BỘ NHỚ ĐỆM ĐÓNG GÓI SẴN (CHỈ CẬP NHẬT KHI ADMIN LỆNH)
         // ==========================================================
-        const STATIC_DATA_STORE = {"subjectTitle":"Toán 7","sidebarTitle":"Khoá nền tảng","lessons":[{"lessonTitle":"Chương 1. Vật Lí Nhiệt","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=CblkKDYNg3I&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=1"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=nAVXKagUUM8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=2"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=LTRMbJTgeT8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=3"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=6rguojXOCsA&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=5"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=HlrSYLXQyQQ&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=6"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=Yu2ZnBZffeE&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=8"},{"partTitle":"Phần 2. Lực từ","linkUrl":"https://www.youtube.com/watch?v=oBCwKqTRt68&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=11"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=VwoioQYe1Gk&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=15"}]},{"lessonTitle":"Bài 4. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=-0i88XI9ibE"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=CblkKDYNg3I&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=1"}]},{"lessonTitle":"Bài 5. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=nAVXKagUUM8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=2"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=LTRMbJTgeT8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=3"}]},{"lessonTitle":"Bài 6. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=6rguojXOCsA&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=5"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=HlrSYLXQyQQ&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=6"}]},{"lessonTitle":"Bài 7. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=Yu2ZnBZffeE&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=8"},{"partTitle":"Phần 2. Lực từ","linkUrl":"https://www.youtube.com/watch?v=oBCwKqTRt68&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=11"}]},{"lessonTitle":"Bài 8. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=VwoioQYe1Gk&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=15"}]},{"lessonTitle":"Bài 8. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=-0i88XI9ibE"}]}]};
+        const STATIC_DATA_STORE = {"subjectTitle":"Toán 7","sidebarTitle":"Khoá nền tảng","lessons":[{"lessonTitle":"Chương 1. Vật Lí Nhiệt","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=CblkKDYNg3I&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=1"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=nAVXKagUUM8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=2"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=LTRMbJTgeT8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=3"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=6rguojXOCsA&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=5"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=HlrSYLXQyQQ&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=6"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=Yu2ZnBZffeE&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=8"},{"partTitle":"Phần 2. Lực từ","linkUrl":"https://www.youtube.com/watch?v=oBCwKqTRt68&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=11"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=VwoioQYe1Gk&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=15"}]},{"lessonTitle":"Bài 4. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=-0i88XI9ibE"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=CblkKDYNg3I&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=1"}]},{"lessonTitle":"Bài 5. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=nAVXKagUUM8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=2"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=LTRMbJTgeT8&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=3"}]},{"lessonTitle":"Bài 6. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=6rguojXOCsA&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=5"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=HlrSYLXQyQQ&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=6"}]},{"lessonTitle":"Bài 7. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=Yu2ZnBZffeE&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=8"},{"partTitle":"Phần 2. Lực từ","linkUrl":"https://www.youtube.com/watch?v=oBCwKqTRt68&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=11"}]},{"lessonTitle":"Bài 8. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=VwoioQYe1Gk&list=PLANVZHOqIcDYKRIOCoBGQ_Z917sTZS25t&index=15"}]},{"lessonTitle":"Bài 8. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=-0i88XI9ibE"}]}]};
         // ==========================================================
 
         function extractYouTubeId(url) {
@@ -471,7 +471,7 @@
             if (STATIC_DATA_STORE) {
                 renderMenuAndVideo(STATIC_DATA_STORE);
             } else {
-                document.getElementById('base-subject-text').innerText = "NAMINS EDUCATION";
+                document.getElementById('base-subject-text').innerText = "ONTHI24 EDUCATION";
                 document.getElementById('menu-container').innerHTML = `<div class="loading-overlay">Chờ dữ liệu...</div>`;
             }
         });
