@@ -5,7 +5,7 @@
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giao diện bài giảng NAMINS</title>
+    <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
         const SHEET_ID = '1C3WaixtIhv8pJuOejXK1bHT3MOSnFefcBeuTZmSW48E'; // ID Google Sheet môn học của bạn
@@ -15,11 +15,11 @@
 
         // Cấu hình tài khoản GitHub cố định
         const GH_OWNER = 'onthi24';      // Tên tài khoản GitHub của bạn
-        const GH_REPO = 'namins';        // Tên kho chứa (Repository) trên GitHub
+        const GH_REPO = 'quanlyonthi24';   // Tên kho chứa (Repository) mới trên GitHub
     </script>
     <style>
         /* ==========================================
-           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN NAMINS
+           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN ONTHI24
            ========================================== */
         * {
             box-sizing: border-box;
@@ -415,7 +415,7 @@
             </div>
         </div>
 
-        <div class="current-lesson-bottom-display" id="subject-lesson-append">NAMINS EDUCATION</div>
+        <div class="current-lesson-bottom-display" id="subject-lesson-append">ONTHI24 EDUCATION</div>
 
         <div id="admin-panel">
             <div class="admin-form-group">
@@ -431,16 +431,16 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank" style="text-decoration: none;">
                 <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
             </a>
-            <a href="https://sites.google.com/view/namins2" target="_blank" class="link-detail">GIỚI THIỆU VỀ NAMINS.COM</a>
+            <a href="https://onthi24.github.io/quanlyonthi24/" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24</a>
         </div>
-        <div class="copyright">© 2026 NAMINS</div>
+        <div class="copyright">© 2026 ONTHI24</div>
     </div>
 
     <script>
         // ==========================================================
         // KHU VỰC BỘ NHỚ ĐỆM ĐÓNG GÓI SẴN (CHỈ CẬP NHẬT KHI ADMIN LỆNH)
         // ==========================================================
-        const STATIC_DATA_STORE = {"subjectTitle":"Vật Lí 12","sidebarTitle":"Tư duy từ Thực nghiệm","lessons":[{"lessonTitle":"Chương 1. Vật Lí Nhiệt","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Quá trình biến đổi của nước từ đá (rắn) đến hơi nước. Cấu trúc của chất. Sự chuyển thể","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Phần 3.","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Tài liệu 1","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"}]},{"lessonTitle":"Bài 2. Nội năng. Định luật I của nhiệt động lực học","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Nhiệt độ. Thang nhiệt độ – nhiệt kế","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 4. Nhiệt dung riêng","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":""},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Tài liệu 1","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"}]},{"lessonTitle":"Bài 5. Nhiệt nóng chảy riêng","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"}]},{"lessonTitle":"Bài 6. Nhiệt hóa hơi riêng","colorCode":"","parts":[{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 1.","linkUrl":""},{"partTitle":"Phần 2.","linkUrl":""},{"partTitle":"Phần 3.","linkUrl":""},{"partTitle":"Tài liệu 1","linkUrl":""}]},{"lessonTitle":"Bài 7. Đồ thị toàn phần & Cân bằng nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":""},{"partTitle":"Phần 2.","linkUrl":""},{"partTitle":"Phần 3.","linkUrl":""},{"partTitle":"Tài liệu 1","linkUrl":""}]}]};
+        const STATIC_DATA_STORE = {"subjectTitle":"Vật Lí 12","sidebarTitle":"Tư duy từ Thực nghiệm","lessons":[{"lessonTitle":"Chương 1. Vật Lí Nhiệt","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Quá trình biến đổi của nước từ đá (rắn) đến hơi nước. Cấu trúc của chất. Sự chuyển thể","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Phần 3.","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Tài liệu 1","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"}]},{"lessonTitle":"Bài 2. Nội năng. Định luật I của nhiệt động lực học","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Nhiệt độ. Thang nhiệt độ – nhiệt kế","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 4. Nhiệt dung riêng","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"""},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Tài liệu 1","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"}]},{"lessonTitle":"Bài 5. Nhiệt nóng chảy riêng","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 2.","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3.","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"}]},{"lessonTitle":"Bài 6. Nhiệt hóa hơi riêng","colorCode":"","parts":[{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 1.","linkUrl":""},{"partTitle":"Phần 2.","linkUrl":""},{"partTitle":"Phần 3.","linkUrl":""},{"partTitle":"Tài liệu 1","linkUrl":""}]},{"lessonTitle":"Bài 7. Đồ thị toàn phần & Cân bằng nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1.","linkUrl":""},{"partTitle":"Phần 2.","linkUrl":""},{"partTitle":"Phần 3.","linkUrl":""},{"partTitle":"Tài liệu 1","linkUrl":""}]}]};
         // ==========================================================
 
         function extractYouTubeId(url) {
@@ -471,7 +471,7 @@
             if (STATIC_DATA_STORE) {
                 renderMenuAndVideo(STATIC_DATA_STORE);
             } else {
-                document.getElementById('base-subject-text').innerText = "NAMINS EDUCATION";
+                document.getElementById('base-subject-text').innerText = "ONTHI24 EDUCATION";
                 document.getElementById('menu-container').innerHTML = `<div class="loading-overlay">Chờ dữ liệu...</div>`;
             }
         });
