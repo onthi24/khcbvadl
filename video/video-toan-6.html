@@ -19,7 +19,7 @@
     </script>
     <style>
         /* ==========================================
-           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN (GIỮ NGUYÊN)
+           GIỮ NGUYÊN CẤU HÌNH CƠ BẢN & LAYOUT
            ========================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
@@ -39,14 +39,15 @@
         .sidebar-column { background-color: #ffffff; border-left: 1px solid #dcdcdc; display: flex; flex-direction: column; width: 100%; height: calc((1100px - 256px) * 9 / 16 + 32px); transition: all 0.3s ease; }
         .sidebar-header { background-color: #ffffff; color: #1e4620; height: 32px; font-size: 13.5px; font-weight: 800; display: flex; justify-content: center; align-items: center; border-bottom: 3px solid #1e4620; flex-shrink: 0; }
         .menu-scroll-container { flex-grow: 1; overflow-y: auto; padding-top: 5px; }
-        .lesson-row-block { border-bottom: 1px dashed #f1f5f9; }
-        .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; }
-        .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; flex-direction: row; align-items: center; justify-content: space-between; cursor: pointer; border-top: 1px solid #f1f5f9; }
+        .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-top: 1px solid #f1f5f9; }
         .menu-item.active { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; padding-left: 20px; }
-        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 30px; width: 100%; }
+        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; gap: 30px; width: 100%; }
         .btn-register { background: linear-gradient(to bottom, #cfa846, #9c7514); color: #fff; padding: 14px 35px; border-radius: 25px; border: 1px solid #85630f; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
         .link-detail { color: #1e4620; font-weight: bold; text-decoration: none; font-size: 16px; text-transform: uppercase; }
-        .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left; }
+        .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left;}
+
+        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -55,22 +56,19 @@
         <div class="search-box">
             <input type="text" id="search-input" oninput="checkAdminAuth(this.value)">
         </div>
-
         <div class="subject-title">
             <span id="base-subject-text">Môn Học</span>
         </div>
-
         <div class="main-container" id="main-layout-container">
             <div class="video-column">
                 <div class="video-header">
                     <span id="current-lesson-title">Chờ dữ liệu...</span> 
-                    <button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()" title="Phóng to/Thu nhỏ khung hình">⛶</button>
+                    <button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()">⛶</button>
                 </div>
                 <div class="video-wrapper" id="wrapper-video-player">
-                    <iframe id="video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                    <iframe id="video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-
             <div class="sidebar-column">
                 <div class="sidebar-header" id="sidebar-title"><span>Mục lục bài giảng</span></div>
                 <div class="menu-scroll-container" id="menu-container">
@@ -84,15 +82,13 @@
         <div id="admin-panel">
             <div class="admin-form-group">
                 <input type="password" id="gh-token-input">
-                <div class="admin-btn-group">
-                    <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
-                    <span id="update-status" style="color: blue;"></span>
-                </div>
+                <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
+                <span id="update-status" style="color: blue;"></span>
             </div>
         </div>
 
         <div class="footer-action">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank" style="text-decoration: none;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank">
                 <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
             </a>
             <a href="https://sites.google.com/view/onthi24" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24.COM</a>
@@ -101,7 +97,8 @@
     </div>
 
     <script>
-        // [Giữ nguyên toàn bộ phần Logic JavaScript của bạn]
+        // [Giữ nguyên logic JavaScript từ code gốc của bạn]
+        // ...
     </script>
 </body>
 </html>
