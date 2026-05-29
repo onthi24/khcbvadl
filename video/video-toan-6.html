@@ -8,7 +8,7 @@
     <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
-        const SHEET_ID = '1_NUBIXgXj5QrDP6cf0iAl1VYfhar4vteO50r0OTfk7Q'; 
+        const SHEET_ID = '1C3WaixtIhv8pJuOejXK1bHT3MOSnFefcBeuTZmSW48E'; 
         const SHEET_TITLE = 'Trang tính1'; 
         const SHEET_RANGE = 'B1:I200'; 
         const ADMIN_PASSWORD = 'admin123'; 
@@ -18,28 +18,35 @@
         const GH_REPO = 'quanlyonthi24'; 
     </script>
     <style>
-        /* [Giữ nguyên CSS cũ của bạn để đảm bảo hiển thị đúng] */
+        /* ==========================================
+           CẤU HÌNH CƠ BẢN & LAYOUT CHUẨN (GIỮ NGUYÊN)
+           ========================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
         .wrapper-layout { max-width: 1100px; margin: 0 auto; padding: 20px; width: 100%; }
-        .subject-title { font-size: 24px; font-weight: bold; color: #78281f; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-        
-        /* Cập nhật màu chủ đạo cho ONTHI24 */
-        .video-header { background-color: #78281f; color: #ffffff; padding: 5px 15px; height: 32px; display: flex; justify-content: space-between; align-items: center; }
-        .sidebar-header { color: #78281f; border-bottom: 3px solid #78281f; }
-        .menu-item.active { border-left: 4px solid #78281f; color: #78281f !important; }
-        
-        .main-container { display: grid; grid-template-columns: 1fr 256px; width: 100%; background-color: #000; border-radius: 4px; overflow: hidden; }
-        .video-wrapper { position: relative; width: 100%; background-color: #000; }
+        .subject-title { font-size: 24px; font-weight: bold; color: #1e4620; margin-bottom: 15px; text-align: left; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .current-lesson-bottom-display { text-align: center; font-size: 16px; font-weight: bold; color: #1e4620; margin-top: 20px; margin-bottom: 10px; margin-right: 256px; width: auto; background: transparent; transition: all 0.3s ease; }
+        .search-box { float: right; margin-bottom: 15px; }
+        .search-box input { width: 200px; padding: 8px 15px; border-radius: 25px; border: 1px solid #c7d2d8; background: #f1f4f6; outline: none; font-size: 14px; transition: 0.2s; }
+        .search-box input:focus { border-color: #1e4620; background: #fff; }
+        .main-container { display: grid; grid-template-columns: 1fr 256px; width: 100%; background-color: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; clear: both; transition: all 0.3s ease; }
+        .video-column { background-color: #000; display: flex; flex-direction: column; width: 100%; }
+        .video-header { background-color: #1e4620; color: #ffffff; padding: 5px 15px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; height: 32px; }
+        .btn-maximize { background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); width: 24px; height: 24px; border-radius: 4px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .video-wrapper { position: relative; width: 100%; background-color: #000; overflow: hidden; }
         .video-wrapper::before { content: ""; display: block; padding-top: 56.25%; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        
-        .btn-register { background: linear-gradient(to bottom, #d4af37, #a67c00); color: #fff; padding: 14px 35px; border-radius: 25px; border: none; font-weight: bold; cursor: pointer; }
-        .copyright { color: #999; font-size: 14px; margin-top: 15px; }
-
-        @media (max-width: 768px) {
-            .main-container { grid-template-columns: 1fr; }
-        }
+        .sidebar-column { background-color: #ffffff; border-left: 1px solid #dcdcdc; display: flex; flex-direction: column; width: 100%; height: calc((1100px - 256px) * 9 / 16 + 32px); transition: all 0.3s ease; }
+        .sidebar-header { background-color: #ffffff; color: #1e4620; height: 32px; font-size: 13.5px; font-weight: 800; display: flex; justify-content: center; align-items: center; border-bottom: 3px solid #1e4620; flex-shrink: 0; }
+        .menu-scroll-container { flex-grow: 1; overflow-y: auto; padding-top: 5px; }
+        .lesson-row-block { border-bottom: 1px dashed #f1f5f9; }
+        .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; }
+        .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; flex-direction: row; align-items: center; justify-content: space-between; cursor: pointer; border-top: 1px solid #f1f5f9; }
+        .menu-item.active { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; padding-left: 20px; }
+        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 30px; width: 100%; }
+        .btn-register { background: linear-gradient(to bottom, #cfa846, #9c7514); color: #fff; padding: 14px 35px; border-radius: 25px; border: 1px solid #85630f; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
+        .link-detail { color: #1e4620; font-weight: bold; text-decoration: none; font-size: 16px; text-transform: uppercase; }
+        .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left; }
     </style>
 </head>
 <body>
@@ -57,10 +64,10 @@
             <div class="video-column">
                 <div class="video-header">
                     <span id="current-lesson-title">Chờ dữ liệu...</span> 
-                    <button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()">⛶</button>
+                    <button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()" title="Phóng to/Thu nhỏ khung hình">⛶</button>
                 </div>
                 <div class="video-wrapper" id="wrapper-video-player">
-                    <iframe id="video-player" src="" allowfullscreen></iframe>
+                    <iframe id="video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                 </div>
             </div>
 
@@ -72,16 +79,29 @@
             </div>
         </div>
 
+        <div class="current-lesson-bottom-display" id="subject-lesson-append">ONTHI24 EDUCATION</div>
+
+        <div id="admin-panel">
+            <div class="admin-form-group">
+                <input type="password" id="gh-token-input">
+                <div class="admin-btn-group">
+                    <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
+                    <span id="update-status" style="color: blue;"></span>
+                </div>
+            </div>
+        </div>
+
         <div class="footer-action">
-            <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
-            <a href="/" class="link-detail">VỀ TRANG CHỦ ONTHI24.COM</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank" style="text-decoration: none;">
+                <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
+            </a>
+            <a href="https://sites.google.com/view/onthi24" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24.COM</a>
         </div>
         <div class="copyright">© 2026 ONTHI24</div>
     </div>
 
     <script>
-        // Copy toàn bộ phần <script> từ file gốc của bạn vào đây
-        // ... (Giữ nguyên phần logic JavaScript của bạn)
+        // [Giữ nguyên toàn bộ phần Logic JavaScript của bạn]
     </script>
 </body>
 </html>
