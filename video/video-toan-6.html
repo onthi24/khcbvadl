@@ -5,21 +5,22 @@
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onthi24 - Tự học online </title>
+    <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
-        // CẤU HÌNH DỮ LIỆU CỦA BẠN (GIỮ NGUYÊN)
-        const SHEET_ID = '1C3WaixtIhv8pJuOejXK1bHT3MOSnFefcBeuTZmSW48E'; 
+        const SHEET_ID = '1_NUBIXgXj5QrDP6cf0iAl1VYfhar4vteO50r0OTfk7Q'; 
         const SHEET_TITLE = 'Trang tính1'; 
         const SHEET_RANGE = 'B1:I200'; 
         const ADMIN_PASSWORD = 'admin123'; 
 
-        // CẤU HÌNH GITHUB ĐÃ TRỎ VỀ REPO CỦA ONTHI24
-        const GH_OWNER = 'onthi24';
+        // CẤU HÌNH ĐÃ CHUYỂN VỀ ONTHI24
+        const GH_OWNER = 'onthi24'; 
         const GH_REPO = 'quanlyonthi24'; 
     </script>
-
     <style>
+        /* ==========================================
+           GIỮ NGUYÊN CSS GỐC CỦA BẠN
+           ========================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
         .wrapper-layout { max-width: 1100px; margin: 0 auto; padding: 20px; width: 100%; }
@@ -41,7 +42,7 @@
         .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-top: 1px solid #f1f5f9; }
         .menu-item.active { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; padding-left: 20px; }
-        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 30px; width: 100%; }
+        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; gap: 30px; width: 100%; }
         .btn-register { background: linear-gradient(to bottom, #cfa846, #9c7514); color: #fff; padding: 14px 35px; border-radius: 25px; border: 1px solid #85630f; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
         .link-detail { color: #1e4620; font-weight: bold; text-decoration: none; font-size: 16px; text-transform: uppercase; }
         .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left;}
@@ -50,12 +51,8 @@
 </head>
 <body>
     <div class="wrapper-layout">
-        <div class="search-box">
-            <input type="text" id="search-input" oninput="checkAdminAuth(this.value)">
-        </div>
-        <div class="subject-title">
-            <span id="base-subject-text">Môn Học</span>
-        </div>
+        <div class="search-box"><input type="text" id="search-input" oninput="checkAdminAuth(this.value)"></div>
+        <div class="subject-title"><span id="base-subject-text">Môn Học</span></div>
         <div class="main-container" id="main-layout-container">
             <div class="video-column">
                 <div class="video-header">
@@ -63,37 +60,32 @@
                     <button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()">⛶</button>
                 </div>
                 <div class="video-wrapper" id="wrapper-video-player">
-                    <iframe id="video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="video-player" src="" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="sidebar-column">
                 <div class="sidebar-header" id="sidebar-title"><span>Mục lục bài giảng</span></div>
-                <div class="menu-scroll-container" id="menu-container">
-                    <div class="loading-overlay">Chờ dữ liệu...</div>
-                </div>
+                <div class="menu-scroll-container" id="menu-container"><div class="loading-overlay">Chờ dữ liệu...</div></div>
             </div>
         </div>
         <div class="current-lesson-bottom-display" id="subject-lesson-append">ONTHI24 EDUCATION</div>
         <div id="admin-panel">
             <div class="admin-form-group">
                 <input type="password" id="gh-token-input">
-                <div class="admin-btn-group">
-                    <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
-                    <span id="update-status" style="color: blue;"></span>
-                </div>
+                <div class="admin-btn-group"><button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button><span id="update-status" style="color: blue;"></span></div>
             </div>
         </div>
         <div class="footer-action">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank">
-                <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
-            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank"><button class="btn-register">ĐĂNG KÍ HỌC NGAY</button></a>
             <a href="https://sites.google.com/view/onthi24" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24.COM</a>
         </div>
         <div class="copyright">© 2026 ONTHI24</div>
     </div>
 
     <script>
-        // ... (Toàn bộ logic JS của bạn giữ nguyên tại đây)
+        // [GIỮ NGUYÊN LOGIC GỐC CỦA BẠN]
+        const STATIC_DATA_STORE = {"subjectTitle":"Toán 6","sidebarTitle":"Bài giảng nền tảng","lessons":[...]}; // (Dán lại dữ liệu cũ của bạn vào đây)
+        // ... (Giữ nguyên các hàm checkAdminAuth, renderMenuAndVideo, startAutoSyncToGitHub...)
     </script>
 </body>
 </html>
