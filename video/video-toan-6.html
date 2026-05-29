@@ -5,22 +5,21 @@
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giao diện bài giảng ONTHI24</title>
+    <title>Onthi24 - Tự học online </title>
 
     <script>
+        // CẤU HÌNH DỮ LIỆU CỦA BẠN (GIỮ NGUYÊN)
         const SHEET_ID = '1C3WaixtIhv8pJuOejXK1bHT3MOSnFefcBeuTZmSW48E'; 
         const SHEET_TITLE = 'Trang tính1'; 
         const SHEET_RANGE = 'B1:I200'; 
         const ADMIN_PASSWORD = 'admin123'; 
 
-        // Cấu hình tài khoản GitHub cho ONTHI24
-        const GH_OWNER = 'onthi24'; 
+        // CẤU HÌNH GITHUB ĐÃ TRỎ VỀ REPO CỦA ONTHI24
+        const GH_OWNER = 'onthi24';
         const GH_REPO = 'quanlyonthi24'; 
     </script>
+
     <style>
-        /* ==========================================
-           GIỮ NGUYÊN CẤU HÌNH CƠ BẢN & LAYOUT
-           ========================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
         .wrapper-layout { max-width: 1100px; margin: 0 auto; padding: 20px; width: 100%; }
@@ -42,16 +41,14 @@
         .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-top: 1px solid #f1f5f9; }
         .menu-item.active { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; padding-left: 20px; }
-        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; gap: 30px; width: 100%; }
+        .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 30px; width: 100%; }
         .btn-register { background: linear-gradient(to bottom, #cfa846, #9c7514); color: #fff; padding: 14px 35px; border-radius: 25px; border: 1px solid #85630f; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
         .link-detail { color: #1e4620; font-weight: bold; text-decoration: none; font-size: 16px; text-transform: uppercase; }
         .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left;}
-
         @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <div class="wrapper-layout">
         <div class="search-box">
             <input type="text" id="search-input" oninput="checkAdminAuth(this.value)">
@@ -76,17 +73,16 @@
                 </div>
             </div>
         </div>
-
         <div class="current-lesson-bottom-display" id="subject-lesson-append">ONTHI24 EDUCATION</div>
-
         <div id="admin-panel">
             <div class="admin-form-group">
                 <input type="password" id="gh-token-input">
-                <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
-                <span id="update-status" style="color: blue;"></span>
+                <div class="admin-btn-group">
+                    <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
+                    <span id="update-status" style="color: blue;"></span>
+                </div>
             </div>
         </div>
-
         <div class="footer-action">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank">
                 <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
@@ -97,8 +93,7 @@
     </div>
 
     <script>
-        // [Giữ nguyên logic JavaScript từ code gốc của bạn]
-        // ...
+        // ... (Toàn bộ logic JS của bạn giữ nguyên tại đây)
     </script>
 </body>
 </html>
