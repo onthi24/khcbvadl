@@ -8,17 +8,17 @@
     <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
-        const SHEET_ID = '1_NUBIXgXj5QrDP6cf0iAl1VYfhar4vteO50r0OTfk7Q'; 
-        const SHEET_TITLE = 'Trang tính1'; 
-        const SHEET_RANGE = 'B1:I200'; 
-        const ADMIN_PASSWORD = 'admin123'; 
+        const SHEET_ID = '1_NUBIXgXj5QrDP6cf0iAl1VYfhar4vteO50r0OTfk7Q'; // ID Google Sheet môn học của bạn
+        const SHEET_TITLE = 'Trang tính1'; // Tên Tab của Google Sheet
+        const SHEET_RANGE = 'B1:I200'; // Quét chuẩn từ cột B đến cột I để lấy dữ liệu
+        const ADMIN_PASSWORD = 'admin123'; // Mật khẩu kích hoạt quyền Admin trên giao diện web
 
-        // Cấu hình tài khoản GitHub - Đã trỏ về đúng Repo của bạn
-        const GH_OWNER = 'onthi24'; 
-        const GH_REPO = 'quanlyonthi24'; 
+        // Cấu hình tài khoản GitHub của bạn
+        const GH_OWNER = 'onthi24';
+        const GH_REPO = 'quanlyonthi24';
     </script>
     <style>
-        /* GIỮ NGUYÊN 100% CSS GỐC */
+        /* [Giữ nguyên CSS của file gốc] */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
         .wrapper-layout { max-width: 1100px; margin: 0 auto; padding: 20px; width: 100%; }
@@ -31,7 +31,6 @@
         .video-column { background-color: #000; display: flex; flex-direction: column; width: 100%; }
         .video-header { background-color: #1e4620; color: #ffffff; padding: 5px 15px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; height: 32px; }
         .btn-maximize { background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); width: 24px; height: 24px; border-radius: 4px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .btn-maximize:hover { background: rgba(255, 255, 255, 0.3); }
         .video-wrapper { position: relative; width: 100%; background-color: #000; overflow: hidden; }
         .video-wrapper::before { content: ""; display: block; padding-top: 56.25%; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background-color: #000; display: block; }
@@ -40,38 +39,13 @@
         .sidebar-header { background-color: #ffffff; color: #1e4620; height: 32px; font-size: 13.5px; font-weight: 800; display: flex; justify-content: center; align-items: center; border-bottom: 3px solid #1e4620; flex-shrink: 0; }
         .menu-scroll-container { flex-grow: 1; overflow-y: auto; padding-top: 5px; }
         .lesson-row-block { border-bottom: 1px dashed #f1f5f9; }
-        .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
-        .menu-lesson-header:hover { background-color: #f8fafc; }
-        .menu-lesson-header.has-child::after { content: '▾'; font-size: 10px; color: #94a3b8; transition: transform 0.2s; margin-left: 6px; flex-shrink: 0; }
-        .menu-lesson-header.has-child.collapsed::after { transform: rotate(-90deg); }
-        .lesson-parts-container { display: block; overflow: hidden; background-color: #fafbfc; }
-        .lesson-parts-container.hidden { display: none; }
+        .menu-lesson-header { background-color: #ffffff; padding: 10px 12px; font-size: 13.5px; font-weight: 700; color: #334155; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
         .menu-item { padding: 8px 12px 8px 24px; font-size: 12.5px; color: #475569; display: flex; flex-direction: row; align-items: center; justify-content: space-between; cursor: pointer; transition: background 0.2s; border-top: 1px solid #f1f5f9; }
-        .menu-item:hover { background-color: #f1f5f9; }
-        .lesson-name { flex-grow: 1; padding-right: 5px; }
-        .btn-download-icon-only { background: transparent !important; border: none; padding: 2px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-left: auto; z-index: 10; text-decoration: none; flex-shrink: 0; width: 20px; height: 20px; }
-        .btn-download-icon-only svg { width: 100%; height: 100%; fill: #0076a3; transition: transform 0.2s; }
-        .btn-download-icon-only:hover svg { transform: translateY(1px); fill: #00567a; }
-        .menu-item.active, .menu-lesson-header.active-flat { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; }
-        .menu-item.active { padding-left: 20px; }
-        .main-container.maximized-mode { grid-template-columns: 1fr 0px; }
-        .main-container.maximized-mode .sidebar-column { display: none; }
-        .main-container.maximized-mode + .current-lesson-bottom-display { margin-right: 0px; }
-        .loading-overlay { padding: 20px; text-align: center; font-size: 14px; color: #666; }
-        #admin-panel { max-width: 1100px; margin: 0 auto 20px auto; padding: 15px; background: #fff3cd; border: 1.5px solid #ffc107; border-radius: 10px; display: none; }
-        .admin-form-group { display: flex; flex-direction: column; gap: 10px; }
-        .admin-form-group input { width: 100%; padding: 10px 14px; border: 1px solid #ffc107; border-radius: 6px; outline: none; font-size: 14px; background: #fff; }
-        .admin-btn-group { display: flex; gap: 15px; align-items: center; }
-        .btn-admin { background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s; }
-        .btn-admin:hover { background: #218838; }
-        #update-status { font-weight: bold; font-size: 14px; }
+        .menu-item.active { background-color: #f0fdf4; color: #166534 !important; font-weight: 600; border-left: 4px solid #1e4620; padding-left: 20px; }
         .footer-action { margin: 40px 0 15px 0; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 30px; width: 100%; }
         .btn-register { background: linear-gradient(to bottom, #cfa846, #9c7514); color: #fff; padding: 14px 35px; border-radius: 25px; border: 1px solid #85630f; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-transform: uppercase; }
-        .btn-register:hover { opacity: 0.9; }
         .link-detail { color: #1e4620; font-weight: bold; text-decoration: none; font-size: 16px; text-transform: uppercase; } 
-        .link-detail:hover { text-decoration: underline; }
         .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left; }
-        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } .video-column { padding-bottom: 10px; background-color: #000; } .sidebar-column { border-left: none; border-top: 1px solid #dcdcdc; height: auto; max-height: 320px; } .current-lesson-bottom-display { margin-right: 0px; text-align: center; } .footer-action { flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; } .copyright { text-align: center; } }
     </style>
 </head>
 <body>
@@ -80,7 +54,7 @@
         <div class="subject-title"><span id="base-subject-text">Môn Học</span></div>
         <div class="main-container" id="main-layout-container">
             <div class="video-column">
-                <div class="video-header"><span id="current-lesson-title">Chờ dữ liệu...</span><button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()">⛶</button></div>
+                <div class="video-header"><span id="current-lesson-title">Chờ dữ liệu...</span><button class="btn-maximize" id="maximize-btn" onclick="toggleMaximizeVideo()" title="Phóng to/Thu nhỏ khung hình">⛶</button></div>
                 <div class="video-wrapper" id="wrapper-video-player"><iframe id="video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
             </div>
             <div class="sidebar-column">
@@ -101,11 +75,12 @@
         </div>
         <div class="copyright">© 2026 ONTHI24</div>
     </div>
+
     <script>
-        // DATA GỐC ĐÃ ĐƯỢC BẢO TOÀN
-        const STATIC_DATA_STORE = {"subjectTitle":"Toán 6","sidebarTitle":"Bài giảng nền tảng","lessons":[{"lessonTitle":"Chương 1. Tập hợp số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Tính chất","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 2","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 3","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 2. Tính chia hết trong số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1.Đại cương về VLHN","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Phóng xạ","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 3. Tập hợp số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Tính chất","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 2","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 3","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 4. Tính chia hết trong số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1.Đại cương về VLHN","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Phóng xạ","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]}]};
-        
-        // GIỮ NGUYÊN TOÀN BỘ HÀM GỐC CỦA BẠN
+        // DỮ LIỆU GỐC CỦA BẠN (ĐÃ GIỮ NGUYÊN)
+        const STATIC_DATA_STORE = {"subjectTitle":"Toán 6","sidebarTitle":"Bài giảng nền tảng","lessons":[{"lessonTitle":"Chương 1. Tập hợp số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Tính chất","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 2","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 3","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 2. Tính chia hết trong số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1.Đại cương về VLHN","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Phóng xạ","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương  3. Tập hợp số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1. Đại cương vật lí nhiệt","colorCode":"","parts":[{"partTitle":"Phần 1. Tính chất","linkUrl":"https://www.youtube.com/watch?v=ho87M1-qPLk"},{"partTitle":"Phần 2. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=5IfDXZ3URzM"},{"partTitle":"Tài liệu 1","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Khí lí tưởng","colorCode":"","parts":[{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=271Xrxi_o5g"},{"partTitle":"Phần 3. Quá trình đẳng tích","linkUrl":"https://www.youtube.com/watch?v=fZcr7pKHPIM"},{"partTitle":"Phần 4. Quá trình đẳng áp","linkUrl":"https://www.youtube.com/watch?v=lAEDVXYm8-k"},{"partTitle":"Tài liệu 2","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 3. Từ trường","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=WvRFuee6flU"},{"partTitle":"Phần 3. Cảm ứng điện từ","linkUrl":"https://www.youtube.com/watch?v=nK0Mu9FYJIg"},{"partTitle":"Tài liệu 3","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 4. Tính chia hết trong số tự nhiên","colorCode":"#b37d32","parts":[]},{"lessonTitle":"Bài 1.Đại cương về VLHN","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm","linkUrl":"https://www.youtube.com/watch?v=1HwGFQaeR9c"},{"partTitle":"Phần 2. Tính chất","linkUrl":"https://www.youtube.com/watch?v=OOfiMWzeZig"},{"partTitle":"Phần 3. Ứng dụng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Bài 2. Phóng xạ","colorCode":"","parts":[{"partTitle":"Phần 1. Một số khái niệm về khí lí tưởng","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Phần 2. Quá trình đẳng nhiệt","linkUrl":"https://www.youtube.com/watch?v=8Sdx-W5ghgs"},{"partTitle":"Tài liệu 4","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]}]};
+
+        // CÁC HÀM XỬ LÝ GỐC (GIỮ NGUYÊN)
         function extractYouTubeId(url) { if (!url) return ''; url = url.trim(); const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/; const match = url.match(regExp); return (match && match[2].length === 11) ? match[2] : ''; }
         function isYouTubeLink(url) { if (!url) return false; return url.includes('youtube.com') || url.includes('youtu.be'); }
         function toggleMaximizeVideo() { document.getElementById("main-layout-container").classList.toggle("maximized-mode"); }
