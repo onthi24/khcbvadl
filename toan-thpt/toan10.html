@@ -1,35 +1,69 @@
 
-<div class="nav-menu" id="mobileNavMenu">
-            <div class="mobile-close-btn" onclick="closeMobileMenu(event)"><i class="fa fa-times"></i></div>
-            <div class="nav-item-wrap"><a href="/quanlyonthi24/" class="nav-item" id="menu-home">Trang chủ</a></div>
-            <div class="nav-item-wrap" onclick="handleMobileClick(this, event)">
-                <a href="#" class="nav-item" id="menu-thpt">Toán THPT <i class="fa fa-chevron-down" style="font-size: 12px;"></i></a>
-                <div class="dropdown-content">
-                    <a href="/quanlyonthi24/toan-thpt/toan12.html">Toán 12</a>
-                    <a href="/quanlyonthi24/toan-thpt/toan11.html">Toán 11</a>
-                    <a href="/quanlyonthi24/toan-thpt/toan10.html">Toán 10</a>
-                </div>
-            </div>
-            <div class="nav-item-wrap" onclick="handleMobileClick(this, event)">
-                <a href="#" class="nav-item" id="menu-thcs">Toán THCS <i class="fa fa-chevron-down" style="font-size: 12px;"></i></a>
-                <div class="dropdown-content">
-                    <a href="/quanlyonthi24/toan-thcs/toan9.html">Toán 9</a>
-                    <a href="/quanlyonthi24/toan-thcs/toan8.html">Toán 8</a>
-                    <a href="/quanlyonthi24/toan-thcs/toan7.html">Toán 7</a>
-                    <a href="/quanlyonthi24/toan-thcs/toan6.html">Toán 6</a>
-                </div>
-            </div>
-            <div class="nav-item-wrap" onclick="handleMobileClick(this, event)">
-                <a href="#" class="nav-item" id="menu-vatli">Vật Lí <i class="fa fa-chevron-down" style="font-size: 12px;"></i></a>
-                <div class="dropdown-content">
-                    <a href="/quanlyonthi24/vatli/vatli12.html">Vật Lí 12</a>
-                    <a href="/quanlyonthi24/vatli/vatli11.html">Vật Lí 11</a>
-                    <a href="/quanlyonthi24/vatli/vatli10.html">Vật Lí 10</a>
-                </div>
-            </div>
-            <div class="nav-item-wrap"><a href="/quanlyonthi24/video/video-kho.html" class="nav-item" id="menu-video">Video</a></div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <base target="_blank">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Giao diện học liệu ONTHI24</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary-green: #1a4d2e; --image-orange: #b57318; --primary-orange: #e67e22; --bg-light: #fdfdfd; --border-color: #b5b5b5; --text-dark: #222; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg-light); margin: 0; padding: 20px; }
+        .top-navbar { display: flex; align-items: center; max-width: 1100px; margin: 0 auto 20px auto; background: #f1f4f6; padding: 10px; border-radius: 4px; }
+        .logo-img { height: 45px; margin-right: 20px; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
+        .nav-item { text-decoration: none; color: #333; font-weight: 600; padding: 5px; }
+        .container { display: flex; gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .column { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+        .column-header { padding: 14px 18px; border-radius: 10px; color: white; font-weight: bold; background: var(--primary-green); }
+        .bg-orange { background: var(--image-orange); }
+        .item-card { background: #fff; padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); cursor: pointer; }
+        .dropdown { display: none; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+        .dropdown a { display: block; padding: 5px 0; color: #555; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="top-navbar">
+        <a href="https://onthi24.com"><img src="https://raw.githubusercontent.com/onthi24/quanlyonthi24/main/Logo%202%20Onthi24%20-2026.png" class="logo-img"></a>
+        <div class="nav-menu">
+            <a href="https://onthi24.com" class="nav-item">Trang chủ</a>
+            <a href="https://onthi24.com/toan-thpt/toan12.html" class="nav-item">Toán 12</a>
+            <a href="https://onthi24.com/toan-thpt/toan11.html" class="nav-item">Toán 11</a>
+            <a href="https://onthi24.com/toan-thcs/toan7.html" class="nav-item">Toán 7</a>
         </div>
-<script>
-        const STATIC_DATA_STORE = {"meta":{"subject":"Toán","grade":"10","title":"Toán 10"},"columns":{"1":{"Chương 1. Mệnh đề và tập hợp":{"color":"","items":[{"name":"Bài 1. Mệnh đề.","link":"#","color":""},{"name":"Bài 2. Tập hợp và các phép toán trên tập hợp.","link":"#","color":""},{"name":"Bài tập cuối chương 1","link":"#","color":""}]},"Chương 2. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn":{"color":"","items":[{"name":"Bài 3. Bất phương trình bậc nhất hai ẩn.","link":"#","color":""},{"name":"Bài 4. Hệ bất phương trình bậc nhất hai ẩn.","link":"#","color":""},{"name":"Bài tập cuối chương II.","link":"#","color":""}]},"Chương 3. Hệ thức lượng trong tam giác":{"color":"","items":[{"name":"Bài 5. Giá trị lượng giác của một góc từ 0° đến 180°.","link":"#","color":""},{"name":"Bài 6. Hệ thức lượng trong tam giác.","link":"#","color":""},{"name":"Bài tập cuối chương 3","link":"#","color":""}]},"Chương 4. Véc tơ":{"color":"","items":[{"name":"Bài 7. Các khái niệm mở đầu.","link":"#","color":""},{"name":"Bài 8. Tổng và hiệu của hai vectơ.","link":"#","color":""},{"name":"Bài 9. Tích của một vectơ với một số.","link":"#","color":""},{"name":"Bài 10. Vectơ trong mặt phẳng toạ độ.","link":"#","color":""},{"name":"Bài 11. Tích vô hướng của hai vectơ.","link":"#","color":""}]},"Chương 5. Các số đặc trưng của mẫu số liệu không ghép nhóm":{"color":"","items":[{"name":"Bài 12. Số gần đúng và sai số.","link":"#","color":""},{"name":"Bài 13. Các số đặc trưng đo xu thế trung tâm.","link":"#","color":""},{"name":"Bài 14. Các số đặc trưng đo độ phân tán.","link":"#","color":""}]}},"2":{"1.1 Đề cương giữa kì 1":{"color":"","items":[{"name":"Đề cương 1","link":"#","color":""}]},"1.2 Đề thi giữ kì 1":{"color":"","items":[{"name":"Bộ đề thi 1","link":"#","color":""}]}}};
-        // ... (Giữ nguyên phần hàm phía sau) ...
+    </div>
+
+    <div class="container">
+        <div class="column" id="column-1"><div class="column-header bg-green">1. Bài giảng</div></div>
+        <div class="column" id="column-2"><div class="column-header bg-orange">2. Đề cương & Đề thi</div></div>
+    </div>
+
+    <script>
+        const STATIC_DATA_STORE = {"meta":{"subject":"Toán","grade":"11","title":"Toán 11"},"columns":{"1":{"Chương 1. Hàm số lượng giác":{"items":[{"name":"Bài 1. Giá trị lượng giác","link":"#","color":""}]}},"2":{"Đề cương & Đề thi":{"items":[{"name":"Đề cương 1","link":"#","color":""}]}}}};
+
+        function toggleMenu(id) {
+            let el = document.getElementById(id);
+            el.style.display = (el.style.display === "block") ? "none" : "block";
+        }
+
+        function renderColumn(colNum, chapters) {
+            const col = document.getElementById(`column-${colNum}`);
+            for (let chuong in chapters) {
+                let id = `c_${colNum}_${chuong.replace(/\s+/g, '')}`;
+                let html = `<div class="item-card" onclick="toggleMenu('${id}')"><h2>${chuong}</h2><div id="${id}" class="dropdown">`;
+                chapters[chuong].items.forEach(i => html += `<a href="${i.link}">${i.name}</a>`);
+                html += `</div></div>`;
+                col.innerHTML += html;
+            }
+        }
+
+        window.onload = () => {
+            renderColumn(1, STATIC_DATA_STORE.columns[1]);
+            renderColumn(2, STATIC_DATA_STORE.columns[2]);
+        };
     </script>
+</body>
+</html>
