@@ -166,19 +166,45 @@
         /* Nút Close X ẩn mặc định trên PC */
         .mobile-close-nav-btn { display: none; }
 
-        /* --- PHẦN BÀI GIẢNG HIỆN TẠI --- */
+        /* --- KHỐI TIÊU ĐỀ MÔN HỌC & TÌM KIẾM CÙNG DÒNG --- */
+        .subject-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            width: 100%;
+            clear: both;
+        }
+
         .subject-title {
             font-size: 24px;
             font-weight: bold;
             color: #1e4620;
-            margin-bottom: 15px;
-            text-align: left;
             display: flex;
             align-items: center;
             gap: 8px;
             line-height: 1.2;
-            margin-top: 10px;
-            clear: both;
+        }
+
+        .search-box {
+            display: block;
+        }
+        
+        .search-box input {
+            width: 200px; 
+            padding: 8px 15px; 
+            border-radius: 25px;
+            border: 1px solid #c7d2d8;
+            background: #f1f4f6;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        
+        .search-box input:focus {
+            border-color: #1e4620;
+            background: #fff;
         }
 
         .current-lesson-bottom-display {
@@ -192,25 +218,6 @@
             width: auto;
             background: transparent;
             transition: all 0.3s ease;
-        }
-
-        .search-box {
-            float: right;
-            margin-bottom: 15px;
-        }
-        .search-box input {
-            width: 200px; 
-            padding: 8px 15px; 
-            border-radius: 25px;
-            border: 1px solid #c7d2d8;
-            background: #f1f4f6;
-            outline: none;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        .search-box input:focus {
-            border-color: #1e4620;
-            background: #fff;
         }
 
         /* ==========================================
@@ -578,6 +585,21 @@
 
             .nav-item-wrap:hover .dropdown-content { display: none; }
 
+            /* Mobile: Chuyển tên môn học và ô tìm kiếm thành hàng dọc cho cân đối */
+            .subject-header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+
             .main-container {
                 grid-template-columns: 1fr;
             }
@@ -662,12 +684,13 @@
             </div>
         </div>
 
-        <div class="search-box">
-            <input type="text" id="search-input" oninput="checkAdminAuth(this.value)" placeholder="Tìm kiếm...">
-        </div>
-
-        <div class="subject-title">
-            <span id="base-subject-text">Môn Học</span>
+        <div class="subject-header-container">
+            <div class="subject-title">
+                <span id="base-subject-text">Môn Học</span>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-input" oninput="checkAdminAuth(this.value)" placeholder="Tìm kiếm...">
+            </div>
         </div>
 
         <div class="main-container" id="main-layout-container">
@@ -859,7 +882,7 @@
                             if (part.linkUrl && part.linkUrl.trim() !== '') {
                                 const dlBtn = document.createElement('a');
                                 dlBtn.className = 'btn-download-icon-only';
-                                dlBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13 l-5 5-5-5h3V9h4v4h3z"/></svg>`;
+                                dlBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>`;
                                 dlBtn.href = part.linkUrl;
                                 dlBtn.target = '_blank';
                                 dlBtn.addEventListener('click', (e) => e.stopPropagation());
