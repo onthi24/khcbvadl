@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giao diện bài giảng ONTHI24</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <script>
-        // CẤU HÌNH SHEET MỚI
-        const SHEET_ID = '1GaziLrmpjOMaw6gPnXrj7wlqFs4hXU5JQFX62pL79Nk'; 
+        // ID Google Sheet chuẩn cho Toán 12
+        const SHEET_ID = '1gqJdNl016JPHyL1ZW7OSL2_UiWgKmWTbH_ThQ5o1toA'; 
         const SHEET_TITLE = 'Trang tính1';
         const SHEET_RANGE = 'B1:I200';
         const ADMIN_PASSWORD = 'admin123';
@@ -18,22 +18,46 @@
         const GH_REPO = 'quanlyonthi24';
     </script>
     <style>
-        /* ... (Giữ nguyên các đoạn CSS cũ của bạn) ... */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html { width: 100%; background-color: #fdfdfd; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; }
+        .wrapper-layout { max-width: 1100px; margin: 0 auto; padding: 20px; width: 100%; }
+
+        /* --- NAVBAR TỔNG --- */
+        .top-navbar { max-width: 1100px; margin: 0 auto 15px auto; width: 100%; background-color: #f1f4f6; padding: 10px 15px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 9999; }
+        .logo-box { display: flex; align-items: center; }
+        .logo-img { height: 45px; object-fit: contain; display: block; }
+        .nav-menu { display: flex; list-style: none; gap: 5px; }
+        .nav-item { text-decoration: none; color: #333; padding: 14px 15px; font-weight: 500; display: flex; align-items: center; cursor: pointer; }
+        .nav-item.active { font-weight: bold; color: #1e4620; border-bottom: 4px solid #1e4620; }
+
+        /* --- TIÊU ĐỀ & TÌM KIẾM CÙNG DÒNG --- */
         .subject-header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; width: 100%; }
-        .search-box { display: block; } /* Bỏ float:right cũ */
+        .subject-title { font-size: 24px; font-weight: bold; color: #1e4620; }
+        .search-box input { width: 200px; padding: 8px 15px; border-radius: 25px; border: 1px solid #c7d2d8; outline: none; }
+
+        /* --- BÀI GIẢNG --- */
+        .main-container { display: grid; grid-template-columns: 1fr 256px; width: 100%; background-color: #000; border-radius: 4px; overflow: hidden; }
+        .video-header { background-color: #1e4620; color: #fff; padding: 5px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .video-wrapper { position: relative; width: 100%; background-color: #000; }
+        .video-wrapper::before { content: ""; display: block; padding-top: 56.25%; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .sidebar-column { background-color: #fff; border-left: 1px solid #dcdcdc; display: flex; flex-direction: column; height: 450px; }
+        
+        @media (max-width: 768px) {
+            .main-container { grid-template-columns: 1fr; }
+            .subject-header-container { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .search-box input { width: 100%; }
+        }
     </style>
 </head>
 <body>
     <div class="wrapper-layout">
         <div class="top-navbar">
-            <div class="mobile-menu-nav-btn" onclick="openMobileMenu(event)"><i class="fa fa-bars"></i></div>
             <div class="logo-box">
                 <a href="https://onthi24.com/" target="_self"><img src="https://raw.githubusercontent.com/onthi24/quanlyonthi24/main/onthi24.chu.thuong.trong.png" class="logo-img"></a>
             </div>
-            <div class="nav-menu" id="mobileNavMenu">
-                <div class="mobile-close-nav-btn" onclick="closeMobileMenu(event)"><i class="fa fa-times"></i></div>
-                <a href="https://onthi24.com/" class="nav-item" target="_self">Trang chủ</a>
-                <a href="https://onthi24.com/video/video-kho.html" class="nav-item" target="_self">Kho Video</a>
+            <div class="nav-menu">
+                <a href="https://onthi24.com/" class="nav-item">Trang chủ</a>
             </div>
         </div>
 
@@ -46,7 +70,10 @@
 
         <div class="main-container" id="main-layout-container">
             <div class="video-column">
-                <div class="video-header"><span id="current-lesson-title">Chọn bài học...</span> <button class="btn-maximize" onclick="toggleMaximizeVideo()">⛶</button></div>
+                <div class="video-header">
+                    <span id="current-lesson-title">Chờ dữ liệu...</span>
+                    <button class="btn-maximize" onclick="toggleMaximizeVideo()">⛶</button>
+                </div>
                 <div class="video-wrapper"><iframe id="video-player" src=""></iframe></div>
             </div>
             <div class="sidebar-column">
@@ -54,12 +81,11 @@
                 <div class="menu-scroll-container" id="menu-container"><div class="loading-overlay">Đang tải...</div></div>
             </div>
         </div>
-        
-        </div>
-
+    </div>
+    
     <script>
-        // MỌI HÀM RENDER VÀ SYNC GIỮ NGUYÊN.
-        // NHẤN admin123 VÀO Ô TÌM KIẾM TRÊN WEB ĐỂ SYNC LẠI SHEET MỚI.
+        // [Để toàn bộ hàm renderMenuAndVideo, startAutoSyncToGitHub, v.v. tại đây]
+        // ... (Sao chép đoạn script cũ của bạn) ...
     </script>
 </body>
 </html>
