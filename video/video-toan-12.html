@@ -1,13 +1,13 @@
 
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giao diện bài giảng ONTHI24.COM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Giao diện bài giảng ONTHI24</title>
 
     <script>
         const SHEET_ID = '1gqJdNl016JPHyL1ZW7OSL2_UiWgKmWTbH_ThQ5o1toA'; // ID Google Sheet môn học của bạn
@@ -29,11 +29,6 @@
             padding: 0;
         }
 
-        :root {
-            --primary-green: #1e4620; /* Màu xanh lá chủ đạo đồng bộ bài giảng */
-            --primary-orange: #e67e22;
-        }
-
         body, html {
             width: 100%;
             background-color: #fdfdfd;
@@ -48,164 +43,16 @@
             width: 100%;
         }
 
-        /* --- THANH ĐIỀU HƯỚNG TỔNG TÍCH HỢP (TOP NAVBAR) --- */
-        .top-navbar {
-            max-width: 1100px;
-            margin: 0 auto 15px auto;
-            width: 100%;
-            background-color: #f1f4f6;
-            padding: 10px 15px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 9999;
-        }
-
-        .logo-box {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-link {
-            display: block;
-            line-height: 0;
-        }
-
-        .logo-img {
-            height: 45px;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Nút ba gạch ☰ mở menu di động (Ẩn mặc định trên PC) */
-        .mobile-menu-nav-btn {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
-            padding: 10px;
-        }
-
-        /* Khối chứa danh sách Menu hiển thị nằm ngang trên PC */
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 5px;
-        }
-
-        .nav-item-wrap {
-            position: relative;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: #333;
-            padding: 14px 15px;
-            font-weight: 500;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
-            border-bottom: 4px solid transparent;
-            cursor: pointer;
-        }
-
-        /* Vết gạch chân màu đậm dưới mục đang chọn trên PC */
-        .nav-item.active {
-            font-weight: bold;
-            background-color: #fff;
-            border-bottom: 4px solid var(--primary-green);
-            color: var(--primary-green);
-        }
-
-        .nav-item:hover {
-            background-color: #e2e8f0;
-        }
-
-        /* KHỐI DROPDOWN THẢ XUỐNG KHI RE CHUỘT (PC) */
-        .dropdown-content {
-            display: none; 
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 180px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
-            z-index: 10000;
-            top: 100%; 
-            left: 0;
-            border-radius: 0 0 5px 5px;
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            font-size: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .dropdown-content a:last-child { border-bottom: none; }
-        
-        .dropdown-content a:hover {
-            background-color: #ddd;
-            color: var(--primary-orange);
-        }
-
-        /* Trên PC: Tự động mở menu con khi di chuột */
-        @media (min-width: 769px) {
-            .nav-item-wrap:hover .dropdown-content {
-                display: block;
-            }
-        }
-
-        /* Nút Close X ẩn mặc định trên PC */
-        .mobile-close-nav-btn { display: none; }
-
-        /* --- KHỐI TIÊU ĐỀ MÔN HỌC & TÌM KIẾM CÙNG DÒNG --- */
-        .subject-header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            margin-top: 10px;
-            width: 100%;
-            clear: both;
-        }
-
         .subject-title {
             font-size: 24px;
             font-weight: bold;
             color: #1e4620;
+            margin-bottom: 15px;
+            text-align: left;
             display: flex;
             align-items: center;
             gap: 8px;
             line-height: 1.2;
-        }
-
-        .search-box {
-            display: block;
-        }
-
-        .search-box input {
-            width: 200px; 
-            padding: 8px 15px; 
-            border-radius: 25px;
-            border: 1px solid #c7d2d8;
-            background: #f1f4f6;
-            outline: none;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        
-        .search-box input:focus {
-            border-color: #1e4620;
-            background: #fff;
         }
 
         .current-lesson-bottom-display {
@@ -221,8 +68,27 @@
             transition: all 0.3s ease;
         }
 
+        .search-box {
+            float: right;
+            margin-bottom: 15px;
+        }
+        .search-box input {
+            width: 200px; 
+            padding: 8px 15px; 
+            border-radius: 25px;
+            border: 1px solid #c7d2d8;
+            background: #f1f4f6;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .search-box input:focus {
+            border-color: #1e4620;
+            background: #fff;
+        }
+
         /* ==========================================
-            LAYOUT HAI CỘT: VIDEO & MỤC LỤC
+           LAYOUT HAI CỘT: VIDEO & MỤC LỤC
            ========================================== */
         .main-container {
             display: grid;
@@ -489,118 +355,7 @@
         .link-detail:hover { text-decoration: underline; }
         .copyright { color: #999; font-size: 14px; margin-top: 15px; text-align: left;}
 
-        /* ========================================================
-           📱 ĐIỀU CHỈNH GIAO DIỆN TRÊN ĐIỆN THOẠI CHUẨN XỊN 100%
-           ======================================================== */
         @media (max-width: 768px) {
-            .top-navbar {
-                justify-content: flex-start; 
-                gap: 15px;
-                padding: 10px 15px;
-                background-color: #f4f6f9;
-                border-radius: 0;
-                margin-bottom: 10px;
-            }
-
-            .mobile-menu-nav-btn {
-                display: block; 
-            }
-
-            .logo-box {
-                width: auto;
-                margin-bottom: 0;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                left: -280px; 
-                width: 260px;
-                height: 100%;
-                background-color: #f4f6f8;
-                box-shadow: 4px 0 12px rgba(0,0,0,0.15);
-                z-index: 99999;
-                flex-direction: column;
-                padding-top: 60px;
-                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                gap: 0;
-            }
-
-            .nav-menu.open {
-                left: 0 !important;
-            }
-
-            .mobile-close-nav-btn {
-                display: block !important;
-                position: absolute;
-                top: 15px;
-                left: 20px;
-                font-size: 24px;
-                cursor: pointer;
-                color: #222;
-                font-weight: bold;
-            }
-
-            .nav-item-wrap { width: 100%; }
-
-            .nav-item {
-                padding: 14px 24px;
-                font-size: 18px;
-                color: #222;
-                font-weight: 600;
-                border-bottom: none;
-                border-left: 5px solid transparent;
-                justify-content: space-between; 
-                width: 100%;
-                background-color: transparent;
-            }
-
-            .nav-item.active {
-                background-color: #e2e8f0;
-                border-left: 6px solid var(--primary-green) !important;
-                border-bottom: none !important;
-                font-weight: bold;
-            }
-
-            .nav-item-wrap .dropdown-content {
-                display: none;
-                position: static; 
-                width: 100%;
-                box-shadow: none;
-                background-color: #eaedf1;
-                padding-left: 15px;
-                border-radius: 0;
-            }
-
-            .nav-item-wrap.active-mobile .dropdown-content {
-                display: flex !important;
-                flex-direction: column;
-            }
-
-            .nav-item-wrap .dropdown-content a {
-                padding: 12px 25px;
-                font-size: 16px;
-                color: #333;
-                border-bottom: 1px solid #cbd5e1;
-            }
-
-            .nav-item-wrap:hover .dropdown-content { display: none; }
-
-            /* Mobile: Chuyển khối tiêu đề và tìm kiếm thành hàng dọc để tránh bị chèn chữ */
-            .subject-header-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            .search-box input {
-                width: 100%;
-            }
-
             .main-container {
                 grid-template-columns: 1fr;
             }
@@ -635,63 +390,12 @@
 
     <div class="wrapper-layout">
         
-        <div class="top-navbar">
-            <div class="mobile-menu-nav-btn" onclick="openMobileMenu(event)"><i class="fa fa-bars"></i></div>
-
-            <div class="logo-box">
-                <a href="https://onthi24.com/" class="logo-link" target="_self">
-                    <img src="https://raw.githubusercontent.com/onthi24/quanlyonthi24/main/onthi24.chu.thuong.trong.png" alt="ONTHI24 LOGO" class="logo-img">
-                </a>
-            </div>
-            
-            <div class="nav-menu" id="mobileNavMenu">
-                <div class="mobile-close-nav-btn" onclick="closeMobileMenu(event)"><i class="fa fa-times"></i></div>
-
-                <div class="nav-item-wrap">
-                    <a href="https://onthi24.com/" class="nav-item" id="menu-home" target="_self">Trang chủ</a>
-                </div>
-
-                <div class="nav-item-wrap" onclick="handleMenuMobileClick(this, event)">
-                    <a href="#" class="nav-item" id="menu-thpt">Video Toán THPT <i class="fa fa-chevron-down" style="font-size: 11px;"></i></a>
-                    <div class="dropdown-content">
-                        <a href="https://onthi24.com/video/video-toan-12.html" target="_self">Video Toán 12</a>
-                        <a href="https://onthi24.com/video/video-toan-11.html" target="_self">Video Toán 11</a>
-                        <a href="https://onthi24.com/video/video-toan-10.html" target="_self">Video Toán 10</a>
-                    </div>
-                </div>
-
-                <div class="nav-item-wrap" onclick="handleMenuMobileClick(this, event)">
-                    <a href="#" class="nav-item" id="menu-thcs">Video Toán THCS <i class="fa fa-chevron-down" style="font-size: 11px;"></i></a>
-                    <div class="dropdown-content">
-                        <a href="https://onthi24.com/video/video-toan-9.html" target="_self">Video Toán 9</a>
-                        <a href="https://onthi24.com/video/video-toan-8.html" target="_self">Video Toán 8</a>
-                        <a href="https://onthi24.com/video/video-toan-7.html" target="_self">Video Toán 7</a>
-                        <a href="https://onthi24.com/video/video-toan-6.html" target="_self">Video Toán 6</a>
-                    </div>
-                </div>
-
-                <div class="nav-item-wrap" onclick="handleMenuMobileClick(this, event)">
-                    <a href="#" class="nav-item" id="menu-vatli">Video Vật Lí <i class="fa fa-chevron-down" style="font-size: 11px;"></i></a>
-                    <div class="dropdown-content">
-                        <a href="https://onthi24.com/video/video-vatli-12.html" target="_self">Video Vật Lí 12</a>
-                        <a href="https://onthi24.com/video/video-vatli-11.html" target="_self">Video Vật Lí 11</a>
-                        <a href="https://onthi24.com/video/video-vatli-10.html" target="_self">Video Vật Lí 10</a>
-                    </div>
-                </div>
-
-                <div class="nav-item-wrap">
-                    <a href="https://onthi24.com/video/video-kho.html" class="nav-item" id="menu-video" target="_self">Video</a>
-                </div>
-            </div>
+        <div class="search-box">
+            <input type="text" id="search-input" oninput="checkAdminAuth(this.value)">
         </div>
 
-        <div class="subject-header-container">
-            <div class="subject-title">
-                <span id="base-subject-text">Môn Học</span>
-            </div>
-            <div class="search-box">
-                <input type="text" id="search-input" oninput="checkAdminAuth(this.value)" placeholder="Tìm kiếm...">
-            </div>
+        <div class="subject-title">
+            <span id="base-subject-text">Môn Học</span>
         </div>
 
         <div class="main-container" id="main-layout-container">
@@ -717,7 +421,7 @@
 
         <div id="admin-panel">
             <div class="admin-form-group">
-                <input type="password" id="gh-token-input" placeholder="Nhập mã GitHub Token...">
+                <input type="password" id="gh-token-input">
                 <div class="admin-btn-group">
                     <button class="btn-admin" id="btn-update-cloud" onclick="startAutoSyncToGitHub()">Cập nhật</button>
                     <span id="update-status" style="color: blue;"></span>
@@ -729,7 +433,7 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX0G3eI0fttdhqXR_YAexVfp2LlgFBJTWZUpS4gGjICfkZ_Q/viewform?usp=sharing" target="_blank" style="text-decoration: none;">
                 <button class="btn-register">ĐĂNG KÍ HỌC NGAY</button>
             </a>
-            <a href="https://sites.google.com/view/namins2" target="_blank" class="link-detail">GIỚI THIỆU VỀ ONTHI24.COM</a>
+            <a href="https://sites.google.com/view/namins2" target="_blank" class="link-detail">GIỢI THIỆU VỀ NAMINS.COM</a>
         </div>
         <div class="copyright">© 2026 ONTHI24.COM</div>
     </div>
@@ -738,37 +442,9 @@
         // ==========================================================
         // KHU VỰC BỘ NHỚ ĐỆM ĐÓNG GÓI SẴN (CHỈ CẬP NHẬT KHI ADMIN LỆNH)
         // ==========================================================
-        const STATIC_DATA_STORE = {"subjectTitle":"Toán 11","sidebarTitle":"Thầy Nguyễn Phan Tiến","lessons":[{"lessonTitle":"Chương 1. Hàm số lượng giác và phương trình lượng giác","colorCode":"#b37d32","parts":[{"partTitle":"Bài 1. Cung và Góc Lượng Giác","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=FtPUVgmqxrA&list=PLXmeri-X8nVw53S8BQvV4j4squlADhdUa"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Giá trị Lượng Giác của một Góc Lượng Giác","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=orEzIXc68ag&list=PLXmeri-X8nVw53S8BQvV4j4squlADhdUa&index=2"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 3. Giá trị Lượng Giác Góc Liên Quan Đặc Biệt","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=GLjIFMFv_a4&list=PLXmeri-X8nVw53S8BQvV4j4squlADhdUa&index=3"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 4. Tuyệt Kĩ Rút Gọn Biểu Thức Lượng Giác Góc Đặc Biệt","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=gq_QPHkFBps&list=PLXmeri-X8nVw53S8BQvV4j4squlADhdUa&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 5. Công Thức Lượng Giác","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=o8mUeJetUqo&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 6. Hàm Số Lượng Giác và Vẽ Đồ Thị","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=lA5r8JXiOFk&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=2"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 7. Phương Trình Lượng Giác Cơ Bản","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=updNBYF5MVA&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=3"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 8. Biểu Diễn và Kết Hợp Nghiệm Lượng Giác","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=6Gn_W9yjawY&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 9. Hàm Số Lượng Giác- Phần 1: Tập Xác Định và Tính Chẵn Lẻ","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=3mTCem6_Q3g&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=5"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 10. Hàm Số Lượng Giác - Phần 2: Tính Giá Trị Lớn Nhất - Nhỏ Nhấ","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=Y4jf_Kh4_8o&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=6"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 11. Hàm Số Lượng Giác- Phần 3: Tính Đơn Điệu - Chu Kì và Đồ Thị","linkUrl":""},{"partTitle":"Bài giảng","linkUrl":"https://www.youtube.com/watch?v=4u6QJbI5ISk&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=7"},{"partTitle":"&Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 12. Đếm Số Nghiệm Lượng Giác Trên Khoảng, Đoạn","linkUrl":"https://www.youtube.com/watch?v=Fk9ZdFBgTLM&list=PLXmeri-X8nVxS_C49IEI5uR3sG60rPa4E&index=8"},{"partTitle":"Bài giảng","linkUrl":""},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 2. Dãy số. Cấp số cộng. Cấp số nhân","colorCode":"","parts":[]}]};
+        const STATIC_DATA_STORE = {"subjectTitle":"Toán 12","sidebarTitle":"Thầy Nguyễn Phan Tiến","lessons":[{"lessonTitle":"Chương 1. Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số","colorCode":"#b37d32","parts":[{"partTitle":"Bài 1.1 Tính Đơn Điệu Của Hàm Số","linkUrl":"https://www.youtube.com/watch?v=zsxktJWNxVI&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 1.2 Cực Trị Của Hàm Số","linkUrl":"https://www.youtube.com/watch?v=BbFj2KgZy6Q&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=2"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Giá Trị Lớn Nhất - Nhỏ Nhất của Hàm Số","linkUrl":"https://www.youtube.com/watch?v=WsMJEaCQsoA&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 3. Đường Tiệm Cận của Đồ Thị hàm Số","linkUrl":"https://www.youtube.com/watch?v=o6g5ZpOczLc&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=6"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 4. Khảo Sát và Vẽ Đồ Thị Hàm Số","linkUrl":"https://www.youtube.com/watch?v=990wEB5yo2k&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=7"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 5. Ứng Dụng Đạo Hàm Giải Quyết Bài Toán Thực Tế","linkUrl":"https://www.youtube.com/watch?v=DYFeDU9oFG4&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=8"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 6. Đơn Điệu Chứa Tham Số m (Tính đồng biến - nghịch biến)","linkUrl":"https://www.youtube.com/watch?v=g7InuFPi7Yo&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=9"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 7. Cực Trị Chứa Tham Số m","linkUrl":"https://www.youtube.com/watch?v=hSe9VbM95o4&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=10"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 8. Cực Trị của Hàm Trị Tuyệt Đối","linkUrl":"https://www.youtube.com/watch?v=KmiyIn6H_Kk&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=12"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 9. Giá trị lớn nhất và Nhỏ Nhất của Hàm S","linkUrl":"https://www.youtube.com/watch?v=FukzNMLJt6s&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=13"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 10. Đồ thị Đạo Hàm (Hàm Hợp) - Phần 1","linkUrl":"https://www.youtube.com/watch?v=yNQRywzrR5M&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=14"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 11. Nhận diện Đồ thị Hàm Số (Phần 1): Hàm Bậc 3, Bậc 4","linkUrl":"https://www.youtube.com/watch?v=TJrY8OO8Nqw&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=15"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 12. Tiệm Cận chứa Tham Số m","linkUrl":"https://www.youtube.com/watch?v=jqKJAmWblEc&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=16"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 13. Phương Pháp Ghép Trục - Tương Giao Hàm Số Chứa m","linkUrl":"https://www.youtube.com/watch?v=x416ddGvt5k&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=17"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 14. Tổng ôn tập chương 1. Hàm số và ứng dụng","linkUrl":"https://www.youtube.com/watch?v=RtuWyBrEq9g&list=PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45&index=22"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 2. Véc tơ và trục tọa độ trong không gian","colorCode":"#b37d32","parts":[{"partTitle":"Bài 1. Vecto Trong Không Gian","linkUrl":"https://www.youtube.com/watch?v=phvpqxLNTUQ&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Hệ Trục Tọa Độ Oxyz - Tọa Độ Điểm và Vecto","linkUrl":"https://www.youtube.com/watch?v=uzN97cFH1II&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 3. Biểu Thức Tọa Độ Phép Toán Vecto Trong Không Gian","linkUrl":"https://www.youtube.com/watch?v=G-9G2nDnwqA&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=5"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 4. Ôn Tập Hình Tọa Độ Oxyz - Giữa Kì 2","linkUrl":"https://www.youtube.com/watch?v=9xj5ExISius&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=16"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 3. Các số đo đặc trưng","colorCode":"#b37d32","parts":[{"partTitle":"Mẫu Số Liệu Ghép Nhóm và Các Số Đặc Trưng Đo Xu Thế Trung Tâm","linkUrl":"https://www.youtube.com/watch?v=Z2ssSY4atIA"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 4. Nguyên hàm và tích phân","colorCode":"#b37d32","parts":[{"partTitle":"Bài 1.1 Nguyên Hàm Cơ Bản và Công Thức Nguyên Hàm","linkUrl":"https://www.youtube.com/watch?v=j615s9znk4U&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=1"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 1.2 Nguyên Hàm Thường Gặp","linkUrl":"https://www.youtube.com/watch?v=7urfQ8s20oY&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=2"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Tích Phân Và Toán Thực Tế Tích Phân","linkUrl":"https://www.youtube.com/watch?v=cNDQkKzfsfw&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=3"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 3. Ứng Dụng Hình Học của Tích Phân","linkUrl":"https://www.youtube.com/watch?v=4DE9Cz-e2mo&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bấm Máy Tính Tích Phân 2, 3 ẩn","linkUrl":"https://www.youtube.com/watch?v=4v7TAgoz2FI&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=13"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Ứng Dụng Tích Phân (Toán 12): Bài Toán Chuyển Động","linkUrl":"https://www.youtube.com/watch?v=ZWNGDJqTSSU&list=PLXmeri-X8nVzh1d_AjoKoTqZI1D3iqU5q&index=24"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 5. Phương pháp tọa độ trong không gian","colorCode":"#b37d32","parts":[{"partTitle":"Chương 5. Phương pháp tọa độ trong không gian","linkUrl":""},{"partTitle":"Bài 1. Phương Trình Mặt Phẳng","linkUrl":"https://www.youtube.com/watch?v=PciV6qoMQXU&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=6"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Phương Trình Đường Thẳng","linkUrl":"https://www.youtube.com/watch?v=pE0nx6XGwD0&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=7"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 3. Phương Trình Mặt Cầu","linkUrl":"https://www.youtube.com/watch?v=D3TjlXqPaz0&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=8"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 4. Góc và Khoảng Cách - Phần 1","linkUrl":"https://www.youtube.com/watch?v=GbZxmfrD6j0&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=14"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 5. Tìm Điểm Đối Xứng và Các Loại Hình Chiếu","linkUrl":"https://www.youtube.com/watch?v=5mGlYIQHiOI&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=15"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 6. Tâm Tỉ Cự Giải Nhanh Max Min Oxyz","linkUrl":"https://www.youtube.com/watch?v=ulZYfnAWkRo&list=PLXmeri-X8nVz44g73HUIKaN_atMmUc1Uj&index=18"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]},{"lessonTitle":"Chương 6. Xác suất có điều kiện","colorCode":"#b37d32","parts":[{"partTitle":"Bài 1. Xác Suất có điều kiện. Công Thức Nhân Xác Suất","linkUrl":"https://www.youtube.com/watch?v=73Ft8fDSc3c&list=PLXmeri-X8nVydIoUTujAYaV1uaeavkpjA&index=1"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Bài 2. Công Thức Xác Suất Toàn Phần. Công Thức Bayes","linkUrl":"https://www.youtube.com/watch?v=n7bUihWfW4w&list=PLXmeri-X8nVydIoUTujAYaV1uaeavkpjA&index=2"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 2.1 Công Thức Xác Suất Toàn Phần. Xác Suất Có Điều Kiện","linkUrl":"https://www.youtube.com/watch?v=2ZsjfFccH0s&list=PLXmeri-X8nVydIoUTujAYaV1uaeavkpjA&index=3"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"},{"partTitle":"Phần 2.2 Công Thức Bayes. Xác suất có Điều kiệ","linkUrl":"https://www.youtube.com/watch?v=ZN4LSnQLEyc&list=PLXmeri-X8nVydIoUTujAYaV1uaeavkpjA&index=4"},{"partTitle":"Bài tập (đang cập nhật)","linkUrl":"https://drive.google.com/file/d/1XYXocUdpEtKQj4hUShVnNH93Sv1q6u4z/view?usp=drive_link"}]}]};
         // ==========================================================
 
-        // --- HÀM ĐIỀU HƯỚNG THANH NAVBAR (MỞ / ĐÓNG MOBILE) ---
-        function openMobileMenu(e) {
-            e.stopPropagation();
-            document.getElementById('mobileNavMenu').classList.add('open');
-        }
-
-        function closeMobileMenu(e) {
-            e.stopPropagation();
-            document.getElementById('mobileNavMenu').classList.remove('open');
-        }
-
-        function handleMenuMobileClick(wrapper, event) {
-            if (window.innerWidth <= 768) {
-                if (event.target.tagName === 'A' && event.target.getAttribute('href') !== '#') {
-                    return; 
-                }
-                event.preventDefault();
-                event.stopPropagation();
-
-                document.querySelectorAll('.nav-item-wrap').forEach(el => {
-                    if (el !== wrapper) el.classList.remove('active-mobile');
-                });
-
-                wrapper.classList.toggle('active-mobile');
-            }
-        }
-
-        // --- HÀM XỬ LÝ VIDEO TRANG BÀI GIẢNG ---
         function extractYouTubeId(url) {
             if (!url) return '';
             url = url.trim();
@@ -792,6 +468,15 @@
             const targetSrc = `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayVal}&rel=0&showinfo=0&controls=1&playsinline=1&enablejsapi=1`;
             if (player) player.src = targetSrc;
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (STATIC_DATA_STORE) {
+                renderMenuAndVideo(STATIC_DATA_STORE);
+            } else {
+                document.getElementById('base-subject-text').innerText = "NAMINS EDUCATION";
+                document.getElementById('menu-container').innerHTML = `<div class="loading-overlay">Chờ dữ liệu...</div>`;
+            }
+        });
 
         function renderMenuAndVideo(data) {
             document.getElementById('base-subject-text').innerText = data.subjectTitle;
@@ -1059,42 +744,6 @@
                 status.style.color = "red";
             });
         }
-
-        // --- KẾT NỐI TỰ ĐỘNG KHỚP URL HIỆN TẠI VỚI HOẠT ĐỘNG THANH NAVBAR ---
-        window.addEventListener('DOMContentLoaded', () => {
-            if (STATIC_DATA_STORE) {
-                renderMenuAndVideo(STATIC_DATA_STORE);
-            } else {
-                document.getElementById('base-subject-text').innerText = "ONTHI24 EDUCATION";
-                document.getElementById('menu-container').innerHTML = `<div class="loading-overlay">Chờ dữ liệu...</div>`;
-            }
-
-            // XỬ LÝ SO KHỚP URL ĐỂ ACTIVE TAB NAVBAR TRÊN TRANG BÀI GIẢNG
-            const currentUrl = window.location.href.toLowerCase();
-            document.querySelectorAll('.nav-menu .nav-item').forEach(el => el.classList.remove('active'));
-            
-            if (currentUrl.includes('toan-thpt') || currentUrl.includes('video-toan-12') || currentUrl.includes('video-toan-11') || currentUrl.includes('video-toan-10')) {
-                document.getElementById('menu-thpt').classList.add('active');
-            } else if (currentUrl.includes('toan-thcs') || currentUrl.includes('video-toan-9') || currentUrl.includes('video-toan-8') || currentUrl.includes('video-toan-7') || currentUrl.includes('video-toan-6')) {
-                document.getElementById('menu-thcs').classList.add('active');
-            } else if (currentUrl.includes('vatli') || currentUrl.includes('vat-li')) {
-                document.getElementById('menu-vatli').classList.add('active');
-            } else if (currentUrl.includes('video-kho') || currentUrl.includes('/video/')) {
-                document.getElementById('menu-video').classList.add('active');
-            } else {
-                document.getElementById('menu-home').classList.add('active');
-            }
-
-            // Đóng menu mobile khi click ra ngoài màn hình trống
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    const menu = document.getElementById('mobileNavMenu');
-                    if (menu && !menu.contains(e.target)) {
-                        menu.classList.remove('open');
-                    }
-                }
-            });
-        });
     </script>
 </body>
 </html>
